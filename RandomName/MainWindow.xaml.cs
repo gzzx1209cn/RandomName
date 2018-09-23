@@ -66,16 +66,6 @@ namespace RandomName
             rtn = r.Next(min, max + 1);
             return rtn;
         }
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (textbox1.Text != "") number = Convert.ToInt32(textbox1.Text);
-            }
-            catch
-            {
-            }
-        }
 
         private void buttonReduce_Click(object sender, RoutedEventArgs e)
         {
