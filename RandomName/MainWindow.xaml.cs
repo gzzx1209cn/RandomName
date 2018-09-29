@@ -26,32 +26,56 @@ namespace RandomName
             InitializeComponent();
         }
         int number = 2;
+        Boolean[] flag = new Boolean[41];
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string[] r = new string[4];
-            r = pickUpStu(number, r);
-            nameBlock1.Text = r[0];
-            nameBlock2.Text = r[1];
-            nameBlock3.Text = r[2];
-            nameBlock4.Text = r[3];
+            if (NeedReset(number))
+            {
+                nameBlock1.Text = "都抽过了";
+                nameBlock2.Text = "";
+                nameBlock3.Text = "";
+                nameBlock4.Text = "";
+            }
+            else
+            {
+                string[] r = new string[4];
+                r = pickUpStu(number, r);
+                nameBlock1.Text = r[0];
+                nameBlock2.Text = r[1];
+                nameBlock3.Text = r[2];
+                nameBlock4.Text = r[3];
+            }
+        }
+
+        public bool NeedReset(int n)
+        {
+            int a = 0;
+            for (int i = 0; i < 41; i++) if (flag[i])a++;
+            if (a + n > 41) return true;
+            else return false;
         }
 
         public string[] pickUpStu(int n,string[] r)
         {
             if (n == 1)
             {
-                r[0] = s[GetRandomNumber(0, 40)];
-                return r;
+                start: int a = GetRandomNumber(0, 40);
+                r[0] = s[a];
+                if (flag[a]) goto start;
+                    flag[a] = true;
+                    return r;
             }
             else
             {
                 pickUpStu(n - 1, r);
-            mmm: r[n - 1] = s[GetRandomNumber(0, 40)];
+            mmm: int a = GetRandomNumber(0, 40);
+                r[n - 1] = s[a];
                 for (int i = 0; i < n - 1; i++)
                 {
-                    if (r[i] == r[n - 1]) goto mmm;
+                    if (r[i] == r[n - 1]||flag[a]) goto mmm;
                 }
+                flag[a] = true;
                 return r;
             }
         }
@@ -96,6 +120,13 @@ namespace RandomName
                 buttonReduce.IsEnabled = false;
             }
             textbox1.Text = Convert.ToString(number);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < 41; i++) flag[i] = false;
+            nameBlock1.Text = "Successfully";
+            nameBlock2.Text = " Reset!";
         }
     }
 }

@@ -16,5 +16,6 @@
         <Button x:Name="buttonAdd" Content="+" HorizontalAlignment="Left" Margin="182,297,0,0" VerticalAlignment="Top" Width="21" Height="21" Click="buttonAdd_Click"/>
         <Button x:Name="buttonReduce" Content="-" HorizontalAlignment="Left" Margin="182,327,0,0" VerticalAlignment="Top" Width="21" Height="21" Click="buttonReduce_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="21,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="51" Width="60" FontSize="20"><Run Text="人数"/><Run Text="："/></TextBlock>
+        <Button x:Name="resetButton" Content="RESET" HorizontalAlignment="Left" Margin="606,327,0,0" VerticalAlignment="Top" Width="95" Height="44" RenderTransformOrigin="0.5,0.5" Click="Button_Click_1"/>
     </Grid>
 </Window>
