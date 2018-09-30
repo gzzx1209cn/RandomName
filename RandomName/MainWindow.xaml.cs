@@ -28,24 +28,19 @@ namespace RandomName
         int number = 2;
         Boolean[] flag = new Boolean[41];
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
             if (NeedReset(number))
             {
-                nameBlock1.Text = "都抽过了";
-                nameBlock2.Text = "";
-                nameBlock3.Text = "";
-                nameBlock4.Text = "";
+                for (int i = 0; i < 41; i++) flag[i] = false;
             }
-            else
-            {
                 string[] r = new string[4];
                 r = pickUpStu(number, r);
                 nameBlock1.Text = r[0];
                 nameBlock2.Text = r[1];
                 nameBlock3.Text = r[2];
                 nameBlock4.Text = r[3];
-            }
+                buttonStart.Content = "Lucky you!";
         }
 
         public bool NeedReset(int n)
@@ -122,11 +117,20 @@ namespace RandomName
             textbox1.Text = Convert.ToString(number);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void buttonStart_MouseMove(object sender, MouseEventArgs e)
         {
-            for (int i = 0; i < 41; i++) flag[i] = false;
-            nameBlock1.Text = "Successfully";
-            nameBlock2.Text = " Reset!";
+            buttonStart.Content = "GO!";
+        }
+
+
+        private void buttonStart_MouseLeave(object sender, MouseEventArgs e)
+        {
+            buttonStart.Content = "Ready?";
+        }
+
+        private void buttonStart_MouseEnter(object sender, MouseEventArgs e)
+        {
+            buttonStart.Content = "GO!";
         }
     }
 }
